@@ -8,16 +8,21 @@ export default class Auth {
   expiresAt;
   userProfile;
 
-  auth0 = new auth0.WebAuth({
-    domain: AUTH_CONFIG.domain,
-    clientID: AUTH_CONFIG.clientId,
-    redirectUri: AUTH_CONFIG.callbackUrl,
-    audience: AUTH_CONFIG.apiUrl,
-    responseType: 'token id_token',
-    scope: 'openid profile read:messages'
+    auth0 = new auth0.WebAuth({
+      domain: AUTH_CONFIG.domain,
+      clientID: AUTH_CONFIG.clientID,
+      redirectUri: AUTH_CONFIG.callbackUrl,
+      audience: AUTH_CONFIG.apiUrl,
+      responseType: 'token id_token',
+      scope: "openid profile email read:messages"
   });
 
+  // auth0 = new auth0.WebAuth(AUTH_CONFIG);
+
+
   constructor() {
+    // console.log(AUTH_CONFIG);
+    // this.auth0 = new auth0.WebAuth(AUTH_CONFIG);
     this.login = this.login.bind(this);
     this.logout = this.logout.bind(this);
     this.handleAuthentication = this.handleAuthentication.bind(this);

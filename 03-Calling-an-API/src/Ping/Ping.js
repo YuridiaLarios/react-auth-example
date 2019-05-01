@@ -14,11 +14,13 @@ class Ping extends Component {
   }
   securedPing() {
     const { getAccessToken } = this.props.auth;
+    console.log(`this is the token: ${getAccessToken()}`)
     const headers = { 'Authorization': `Bearer ${getAccessToken()}`}
     axios.get(`${API_URL}/private`, { headers })
       .then(response => this.setState({ message: response.data.message }))
       .catch(error => this.setState({ message: error.message }));
   }
+
   render() {
     const { isAuthenticated } = this.props.auth;
     const { message } = this.state;
