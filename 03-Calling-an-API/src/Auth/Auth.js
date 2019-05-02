@@ -83,14 +83,13 @@ export default class Auth {
     });
   }
 
-  getProfile(cb) {
-    this.auth0.client.userInfo(this.accessToken, (err, profile) => {
-      if (profile) {
-        this.userProfile = profile;
-      }
-      cb(err, profile);
-    });
+  isAuthenticated() {
+    // Check whether the current time is past the
+    // access token's expiry time
+    let expiresAt = this.expiresAt;
+    return new Date().getTime() < expiresAt;
   }
+
 
   logout() {
     // Remove tokens and expiry time
@@ -112,10 +111,13 @@ export default class Auth {
     history.replace('/');
   }
 
-  isAuthenticated() {
-    // Check whether the current time is past the
-    // access token's expiry time
-    let expiresAt = this.expiresAt;
-    return new Date().getTime() < expiresAt;
+  getProfile(cb) {
+    this.auth0.client.userInfo(this.accessToken, (err, profile) => {
+      if (profile) {
+        this.userProfile = profile;
+      }
+      cb(err, profile);
+    });
   }
+
 }
