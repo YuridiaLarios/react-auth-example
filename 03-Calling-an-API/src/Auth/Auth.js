@@ -1,6 +1,10 @@
 import auth0 from 'auth0-js';
 import { AUTH_CONFIG } from './auth0-variables';
 import history from '../history';
+import { API_URL } from './../constants';
+import axios from 'axios';
+
+
 
 export default class Auth {
   accessToken;
@@ -17,12 +21,8 @@ export default class Auth {
       scope: "openid profile email read:messages"
   });
 
-  // auth0 = new auth0.WebAuth(AUTH_CONFIG);
-
 
   constructor() {
-    // console.log(AUTH_CONFIG);
-    // this.auth0 = new auth0.WebAuth(AUTH_CONFIG);
     this.login = this.login.bind(this);
     this.logout = this.logout.bind(this);
     this.handleAuthentication = this.handleAuthentication.bind(this);
@@ -34,7 +34,7 @@ export default class Auth {
   }
 
   login() {
-    this.auth0.authorize();
+    this.auth0.authorize()
   }
 
   handleAuthentication() {
@@ -69,7 +69,25 @@ export default class Auth {
 
     // navigate to the home route
     history.replace('/home');
+    /**********************************************************************
+    get profile into database!
+    **********************************************************************/
+
+    this.getProfile((err, profile) => {
+      console.log({ profile });
+      const headers = { 'Authorization': `Bearer ${this.getAccessToken()}`}
+  
+      axios({
+        method: 'post',
+        url: `${API_URL}/user`,
+        headers,
+        data: profile
+      }).then(function(res){
+        console.log(`the response is: ${res}`);
+      });
+    });
   }
+  
 
   renewSession() {
     this.auth0.checkSession({}, (err, authResult) => {

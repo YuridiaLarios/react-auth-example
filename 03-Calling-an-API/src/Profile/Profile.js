@@ -5,7 +5,14 @@ import './Profile.css';
 class Profile extends Component {
   componentWillMount() {
     this.setState({ profile: {} });
+
     const { userProfile, getProfile } = this.props.auth;
+    
+    // getProfile((err, profile) => {
+    //     console.log({ profile });
+    //   });
+
+
     if (!userProfile) {
       getProfile((err, profile) => {
         this.setState({ profile });
