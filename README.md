@@ -4,7 +4,9 @@ This sample demonstrates how to make secure calls to an API after authenticating
 
 There is a short screencast available: https://www.youtube.com/watch?v=ti2zMJm34Cw
 Auth0 documentation: https://auth0.com/docs/quickstart/spa/react
-Demo: 
+Demo:
+![ezgif com-resize](https://user-images.githubusercontent.com/22802143/57829595-58195180-7764-11e9-926a-f86b4bce8935.gif)
+
 
 Getting Started
 If you haven't already done so, sign up for your free Auth0 account and create a new client in the dashboard. Find the domain and client ID from the settings area and add the URL for your application to the Allowed Callback URLs box. The default URL is http://localhost:3000/callback. Also configure Allowed Web Origins to the default application URL http://localhost:3000.
