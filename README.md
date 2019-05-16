@@ -2,7 +2,8 @@
 Auth0 React Calling an API
 This sample demonstrates how to make secure calls to an API after authenticating a user with Auth0. The calls to the API are made with the user's access_token. The sample makes use of Auth0's hosted login page which provides centralized authentication.
 
-There is a short screencast available.
+There is a short screencast available: https://www.youtube.com/watch?v=ti2zMJm34Cw
+Auth0 documentation: https://auth0.com/docs/quickstart/spa/react
 
 Getting Started
 If you haven't already done so, sign up for your free Auth0 account and create a new client in the dashboard. Find the domain and client ID from the settings area and add the URL for your application to the Allowed Callback URLs box. The default URL is http://localhost:3000/callback. Also configure Allowed Web Origins to the default application URL http://localhost:3000.
@@ -43,3 +44,5 @@ Run the Application
 The demo comes ready to serve locally using react-scripts.
 
 npm start
+
+For More Auth0 react-examples: https://github.com/YuridiaLarios/auth0-react-samples
